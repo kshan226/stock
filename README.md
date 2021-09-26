@@ -37,23 +37,13 @@ get_last_page <- function(url) {
   return(last_page)
 }
 
-# 각 종목의 기본 정보  
+# 각 종목의 주식 정보  
 get_info <- function(url){
   html <- read_html(url, encoding="euc-kr")
   
   종목명 <- html %>%
     html_nodes(".tltle") %>%
     html_text()
-  
-  code <- html %>%
-    html_nodes("td") %>%
-    html_nodes("a") %>%
-    html_attr("href")
-  
-  code <- code[str_detect(code, "item")]
-  code <- str_sub(code, -6, -1)
-  
-  종목코드 <- code[c(TRUE, FALSE)]
   
   data <- html %>%
     html_nodes(".number") %>%
@@ -76,6 +66,7 @@ get_info <- function(url){
   return(df)
 }
 
+# 한 페이지에 50개 종목, 총 페이지수 구한 후 각 종목의 주식 정보
 get_stock_info <- function(base_url) {
   last_page <- get_last_page(paste0(base_url, 1))
   
@@ -90,15 +81,16 @@ get_stock_info <- function(base_url) {
 kospi_url <- "https://finance.naver.com/sise/sise_market_sum.nhn?&page="
 kospi_stock <- get_stock_info(kospi_url)
 
-
 kosdaq_url <- "https://finance.naver.com/sise/sise_market_sum.nhn?sosok=1&page=" 
 kosdaq_stock <- get_stock_info(kosdaq_url)
 
+# 소숫점 두자리까지
 kospi_stock$등락률 <- round(kospi_stock$등락률, 2)
 kospi_stock$외국인비율 <- round(kospi_stock$외국인비율, 2)
 kospi_stock$PER <- round(kospi_stock$PER, 2)
 kospi_stock$ROE <- round(kospi_stock$ROE, 2)
 
+# 파일로 저장
 write_csv(kospi_stock, "d:/data/kospi.csv")
 write_csv(kosdaq_stock, "d:/data/kosdaq.csv")
 ```
