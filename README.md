@@ -1,6 +1,8 @@
-# kospi.csv, kosdaq.csv
+# 주가 정보
 
-2021-9-24 주식시장 마감 후 kospi 1,658개 종목의 주가정보
+2021-9-24 주식시장 마감 후 주가 정보
+- kospi.csv: kospi 1,658개 종목
+- kosdaq.csv: kosdaq 1,511개 종목
 
 | 변수| 설명 |
 |---| --- |
