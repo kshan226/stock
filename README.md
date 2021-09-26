@@ -18,7 +18,9 @@
 |PER  | |
 |ROE  | |
 
+
 ```r
+# R을 이용한 주가 정보 크롤링 
 library(tidyverse)
 library(lubridate)
 library(rvest) 
