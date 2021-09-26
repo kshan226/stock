@@ -69,7 +69,7 @@ get_info <- function(url){
 
 # 한 페이지에 50개 종목, 총 페이지수 구한 후 각 종목의 주식 정보
 get_stock_info <- function(base_url) {
-  # 첫 페이지에 마지막 페이지 정보가 있음
+  # 첫 페이지에서 마지막 페이지 정보를 읽음
   last_page <- get_last_page(paste0(base_url, 1))
   
   df <- data.frame()
@@ -86,13 +86,13 @@ kospi_stock <- get_stock_info(kospi_url)
 kosdaq_url <- "https://finance.naver.com/sise/sise_market_sum.nhn?sosok=1&page=" 
 kosdaq_stock <- get_stock_info(kosdaq_url)
 
-# 소숫점 두자리까지
+# 소숫점 두자리까지 반올림
 kospi_stock$등락률 <- round(kospi_stock$등락률, 2)
 kospi_stock$외국인비율 <- round(kospi_stock$외국인비율, 2)
 kospi_stock$PER <- round(kospi_stock$PER, 2)
 kospi_stock$ROE <- round(kospi_stock$ROE, 2)
 
-# 파일로 저장
+# csv 파일로 저장 (utf-8으로 인코딩)
 write_csv(kospi_stock, "d:/data/kospi.csv")
 write_csv(kosdaq_stock, "d:/data/kosdaq.csv")
 ```
