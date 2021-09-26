@@ -9,11 +9,11 @@
 |종목명  | |
 |현재가  | |
 |전일비  | |
-|등락률 | % |
+|등락률 | 퍼센트 |
 |액면가  | |
 |시가총액  | 단위: 억 |
 |상장주식수  |단위: 1,000 |
-|외국인비율  | % |
+|외국인비율  |퍼센트 |
 |거래량  |단위: 주 |
 |PER  | |
 |ROE  | |
@@ -68,6 +68,7 @@ get_info <- function(url){
 
 # 한 페이지에 50개 종목, 총 페이지수 구한 후 각 종목의 주식 정보
 get_stock_info <- function(base_url) {
+  # 첫 페이지에 마지막 페이지 정보가 있음
   last_page <- get_last_page(paste0(base_url, 1))
   
   df <- data.frame()
