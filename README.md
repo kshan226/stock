@@ -18,6 +18,8 @@
 |PER  | |
 |ROE  | |
 
+R로 kospi.csv 데이터를 읽을 때
+read.csv("https://raw.githubusercontent.com/kshan226/stock/main/kospi.csv", fileEncoding = "utf-8")
 
 ```r
 # R을 이용한 주가 정보 크롤링 
