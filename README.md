@@ -95,6 +95,6 @@ kospi_stock$PER <- round(kospi_stock$PER, 2)
 kospi_stock$ROE <- round(kospi_stock$ROE, 2)
 
 # csv 파일로 저장 (utf-8으로 인코딩)
-write_csv(kospi_stock, "d:/data/kospi.csv")
-write_csv(kosdaq_stock, "d:/data/kosdaq.csv")
+write.csv(kospi_stock, "kospi.csv", fileEncoding = "utf-8")
+write.csv(kosdaq_stock, "kosdaq.csv", fileEncoding = "utf-8")
 ```
